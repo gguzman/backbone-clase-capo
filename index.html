@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Backbone.Capo Rulz!</title>
+
+        <meta charset="utf-8" />
+
+        <link rel="stylesheet" href="assets/css/main.css">
+    </head>
+    <body>
+
+        <h1>Capo User</h1>
+
+        <section id="content">
+            <img src="http://jimpunk.net/Loading/wp-content/uploads/loading1.gif" alt="" />
+        </section>
+
+        <script id="user_form" type="text/x-handlebars-template">
+            <form action="#">
+                <fieldset>
+                    <legend>Your Info?</legend>
+
+                    <p>
+                        <label>Username:</label>
+                        <input type="text" name="username" value="{{username}}" />
+                    </p>
+
+                    <p>
+                        <label>Email:</label>
+                        <input type="email" name="email" value="{{email}}" />
+                    </p>
+
+                    <p>
+                        <label>Password:</label>
+                        <input type="password" name="password" value="{{password}}" />
+                    </p>
+
+                    <div class="buttons">
+                        <input type="submit" value="ENTER" />
+                    </div>
+                </fieldset>
+            </form>
+        </script>
+
+        <script id="user_info" type="text/x-handlebars-template">
+            <div class="user">
+                <figure class="avatar">
+                    {{{image}}}
+                    <figcaption>Enrique Ramirez Pic</figcaption>
+                </figure>
+
+                <h2>{{username}}</h2>
+                <p><strong>Email:</strong> {{email}}</p>
+                <p><strong>Password:</strong> {{password}}</p>
+
+                <div class="button_placeholder"></div>
+            </div>
+        </script>
+
+        <script id="user_info_buttons" type="text/x-handlebars-template">
+            <div class="buttons">
+                <button type="button">Enter Room</button>
+            </div>
+        </script>
+
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/js/handlebars.js"></script>
+        <script src="assets/js/underscore.js"></script>
+        <script src="assets/js/backbone.js"></script>
+        <script src="assets/js/backbone.capo.js"></script>
+        <script src="assets/js/backbone.syphon.js"></script>
+        <script src="assets/js/scripts.js"></script>
+    </body>
+</html>
