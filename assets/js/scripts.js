@@ -1,8 +1,8 @@
 var DicoBuild = function() {
 
     this.initialize = function() {
-        this.buildModels();
-        this.buildViews();
+        this.build('models');
+        this.build('views');
         this.startRouter();
 
         Backbone.history.start();
@@ -79,7 +79,7 @@ var DicoBuild = function() {
     this.views = {
         UserForm: Capo.View.extend({
             events: {
-
+                'submit form' : 'continue'
             },
 
             template: Handlebars.compile( $('#user_form').html() ),
