@@ -1,8 +1,8 @@
 /**
- *     Backbone.capo.js v0.0.1
+ *     Backbone.capo.js v0.0.3
  *
  *     (c) 2010-2013 Enrique Ramirez, wepow.
- *     Backbone.capo may be freely distributed under the MIT license.
+ *     Backbone.Capo may be freely distributed under the MIT license.
  */
 
 var Capo = (function(Backbone, _, root, document, undefined) {
@@ -27,36 +27,26 @@ var Capo = (function(Backbone, _, root, document, undefined) {
         // Initialize
         initialize: function() {},
 
-        // Build all views in this module
-        buildViews: function() {
-            var builtViews = {},
+        // Build items
+        build: function(constructors, newHome) {
+            var builtItems = {},
                 newIndex;
 
-            $.each(this.views, function(index, Value) {
+            newHome = newHome || constructors;
+
+            _.each(this[constructors], function(Value, index) {
                 newIndex = index.charAt(0).toLowerCase() + index.slice(1);
-                builtViews[newIndex] = new Value();
+                builtItems[newIndex] = new Value();
             });
+
+            if (!this[newHome]) {
+                this[newHome] = {};
+            }
 
             // Extending original views object
-            _.extend(this.views, builtViews);
+            _.extend(this[newHome], builtItems);
 
-            Capo.vent.trigger('module:views:built');
-
-            return this;
-        },
-
-        buildModels: function() {
-            var builtModels = {},
-                newIndex;
-
-            $.each(this.models, function(index, Value) {
-                newIndex = index.charAt(0).toLowerCase() + index.slice(1);
-                builtModels[newIndex] = new Value();
-            });
-
-            _.extend(this.models, builtModels);
-
-            Capo.vent.trigger('module:models:built');
+            Capo.vent.trigger('module:' + constructors + ':built');
 
             return this;
         },
@@ -89,8 +79,8 @@ var Capo = (function(Backbone, _, root, document, undefined) {
                 // Due to a lack of inspiration to find a solution
                 // that does not end in an infinite loop, it iss here
                 // for now.
-                _.each(view.assigned, function() {
-                    this.close();
+                _.each(view.assigned, function(view) {
+                    view.close();
                 });
 
                 view.close();
